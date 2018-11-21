@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataTemplateSelectorDemo.BorderView"
+             x:Name="this"
+             BackgroundColor="Transparent">
+  <ContentView.Content>
+        <Frame HasShadow="False"
+               CornerRadius="{Binding Source={x:Reference this}, Path=CornerRadius}"
+               BackgroundColor="{Binding Source={x:Reference this}, Path=BorderColor}"
+               Style="{Binding Source={x:Reference this}, Path=OuterFrameStyle}}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Padding="{Binding Source={x:Reference this}, Path=BorderWidth}"
+               HeightRequest="{Binding Source={x:Reference this}, Path=OFHeightRequest}"
+               WidthRequest="{Binding Source={x:Reference this}, Path=OFWidthRequest}"
+               x:Name="outerFrame">
+            <Frame BackgroundColor="{Binding Source={x:Reference this}, Path=InnerBackgroundColor}"
+                   HasShadow="False"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   CornerRadius="{Binding CornerRadius, Source={x:Reference outerFrame}}">
+                <ContentView x:Name="innerContent"
+                             Content="{Binding Source={x:Reference this}, Path=InnerContent}"/>
+            </Frame>
+        </Frame>
+  </ContentView.Content>
+</ContentView>
